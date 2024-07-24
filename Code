@@ -1,0 +1,95 @@
+using System.Xml.Xsl;
+
+namespace Per1
+{
+    internal class Program
+    {
+        static void Main(string[] args)
+        {
+
+            bool buclePrincipal = true;
+            string correctUsername = "usuario1";
+            string correctPassword = "contraseña1";
+            int maxAttempts = 3;
+            int attempts = 0;
+            bool isAuthenticated = false;
+
+            while (attempts < maxAttempts && !isAuthenticated)
+            {
+                try
+                {
+                    Console.Write("Ingrese su nombre de usuario: ");
+                    string username = Console.ReadLine();
+                    Console.Write("Ingrese su contraseña: ");
+                    string password = Console.ReadLine();
+
+                    if (username == correctUsername && password == correctPassword)
+                    {
+                        isAuthenticated = true;
+                        Console.WriteLine("Inicio de sesión exitoso.");
+                    }
+                    else
+                    {
+                        attempts++;
+                        throw new Exception("Nombre de usuario o contraseña incorrectos.");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    if (attempts < maxAttempts)
+                    {
+                        Console.WriteLine($"Intentos restantes: {maxAttempts - attempts}");
+                    }
+                }
+            }
+
+            if (!isAuthenticated)
+            {
+                Console.WriteLine("Ha excedido el número máximo de intentos. El acceso ha sido bloqueado.");
+            }
+            do
+            {
+                try
+                {
+                    Console.WriteLine("|1|");
+                    Console.WriteLine("|2|");
+                    Console.WriteLine("|3|");
+                    Console.WriteLine("|4|");
+                    Console.WriteLine("|5|");
+                    Console.WriteLine("|6|");
+                    Console.WriteLine("|7|");
+
+                    var bucle1 = int.Parse(Console.ReadLine());
+
+                    switch (bucle1) 
+                    {
+                        case 1:
+                            Console.WriteLine();
+                            break;
+                        case 2:
+                            break;
+                        case 3:
+                            Console.WriteLine();
+                            break;
+                        case 4:
+                            Console.WriteLine();
+                            break;
+                        case 5:
+                            Console.WriteLine();
+                            break;
+                        case 6:
+                            Console.WriteLine();
+                            break;
+
+                    }
+                }
+                catch (FormatException ex) { Console.WriteLine(ex); }
+                catch (OverflowException ex) { Console.WriteLine(ex); }
+                catch (DivideByZeroException ex) { Console.WriteLine(ex); }
+                catch (Exception ex) { Console.WriteLine(ex); }
+            }
+            while (buclePrincipal);
+        }
+    }
+}
